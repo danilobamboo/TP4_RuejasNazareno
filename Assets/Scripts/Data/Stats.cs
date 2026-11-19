@@ -7,6 +7,7 @@ namespace RPG.Data
     public struct Stats
     {
         [Min(1)] public int maxHP;
+        [Min(0)] public int maxMP;
         [Min(0)] public int attack;
         [Min(0)] public int defense;
         [Min(0)] public int magic;

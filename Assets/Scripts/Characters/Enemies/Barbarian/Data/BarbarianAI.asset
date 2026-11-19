@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5dc3e51189eed4cb4e8be38a3e79d6, type: 3}
+  m_Name: BarbarianAI
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Data.EnemyAIProfile
+  rules:
+  - ability: {fileID: 11400000, guid: c7e231e0ddb07824785fce4768b8f6c9, type: 2}
+    condition: 0
+    hpThreshold: 0
+    mpThreshold: 0
+    count: 0
+    chance: 0
+    targetStrategy: 0
+  - ability: {fileID: 11400000, guid: be3cb15af29412142b05b5e05e2bc2e7, type: 2}
+    condition: 1
+    hpThreshold: 0
+    mpThreshold: 0
+    count: 0
+    chance: 0
+    targetStrategy: 3
+  - ability: {fileID: 11400000, guid: b6e51c88ea8c3774f8996ab579b4697e, type: 2}
+    condition: 1
+    hpThreshold: 0
+    mpThreshold: 0
+    count: 0
+    chance: 0
+    targetStrategy: 1
+  fallbackTargetStrategy: 0

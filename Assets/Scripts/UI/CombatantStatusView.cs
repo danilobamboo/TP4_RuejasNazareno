@@ -17,6 +17,8 @@ namespace RPG.UI
         public TMP_Text nameLabel;
         public TMP_Text hpLabel;
         public Image hpFill;
+        public TMP_Text mpLabel;
+        public Image mpFill;
         public Image atbFill;
         public Image highlight;
         public CanvasGroup canvasGroup;
@@ -60,6 +62,10 @@ namespace RPG.UI
             SetFill(hpFill, combatant.HPPercent);
 
             if (hpLabel != null) hpLabel.text = $"{combatant.CurrentHP}/{combatant.MaxHP}";
+
+            bool hasMP = combatant.MaxMP > 0;
+            SetFill(mpFill, hasMP ? combatant.MPPercent : 0f);
+            if (mpLabel != null) mpLabel.text = hasMP ? $"{combatant.CurrentMP}/{combatant.MaxMP}" : "-";
 
             float gauge = combatant.Gauge / maxGauge;
             SetFill(atbFill, Mathf.Abs(gauge));

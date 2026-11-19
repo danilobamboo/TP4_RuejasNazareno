@@ -97,9 +97,12 @@ namespace RPG.UI
 
             if (results.Count > 0)
             {
-                IEnumerable<string> parts = results.Select(r => r.IsHeal
-                    ? $"{r.Target.Name} <color=#7CFC9A>+{r.Amount}</color>"
-                    : $"{r.Target.Name} <color=#FF8A8A>-{r.Amount}</color>");
+                IEnumerable<string> parts = results.Select(r => r.Type switch
+                {
+                    ActionResultType.Heal => $"{r.Target.Name} <color=#7CFC9A>+{r.Amount} HP</color>",
+                    ActionResultType.RestoreMP => $"{r.Target.Name} <color=#7FB8FF>+{r.Amount} MP</color>",
+                    _ => $"{r.Target.Name} <color=#FF8A8A>-{r.Amount}</color>"
+                });
                 line += ": " + string.Join(", ", parts);
             }
 

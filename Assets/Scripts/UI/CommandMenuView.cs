@@ -43,7 +43,9 @@ namespace RPG.UI
             Clear();
             titleLabel.text = $"Turno de {user.Name}";
 
-            Add("Atacar", null, true, () => SelectAbility(user.BasicAttack, ShowMainMenu));
+            AbilityData attack = user.BasicAttack;
+            string attackDetail = attack.mpCost > 0 ? $"MP {attack.mpCost}" : null;
+            Add("Atacar", attackDetail, user.CanAfford(attack), () => SelectAbility(attack, ShowMainMenu));
             Add("Habilidades", null, user.Abilities.Any(), ShowAbilityMenu);
             Add("Defender", "Próximamente", false, null);
 
@@ -57,8 +59,9 @@ namespace RPG.UI
 
             foreach (AbilityData ability in user.Abilities)
             {
-                bool usable = TargetSelector.GetCandidates(user, ability, battle.Combatants).Count > 0;
-                Add(ability.displayName, $"ATB {ability.atbCost:0}", usable, () => SelectAbility(ability, ShowAbilityMenu));
+                bool usable = user.CanAfford(ability) && TargetSelector.GetCandidates(user, ability, battle.Combatants).Count > 0;
+                string detail = ability.mpCost > 0 ? $"MP {ability.mpCost} · ATB {ability.atbCost:0}" : $"ATB {ability.atbCost:0}";
+                Add(ability.displayName, detail, usable, () => SelectAbility(ability, ShowAbilityMenu));
             }
 
             Add("Volver", null, true, ShowMainMenu);
@@ -78,7 +81,10 @@ namespace RPG.UI
 
             foreach (Combatant target in TargetSelector.GetCandidates(user, ability, battle.Combatants))
             {
-                ActionButtonView button = Add(target.Name, $"{target.CurrentHP}/{target.MaxHP}", true, () => Submit(ability, target));
+                string detail = ability.effect == AbilityEffect.RestoreMP
+                    ? $"MP {target.CurrentMP}/{target.MaxMP}"
+                    : $"HP {target.CurrentHP}/{target.MaxHP}";
+                ActionButtonView button = Add(target.Name, detail, true, () => Submit(ability, target));
                 button.Highlighted += () => TargetHighlighted?.Invoke(target);
             }
 

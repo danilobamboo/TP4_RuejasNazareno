@@ -14,5 +14,6 @@ namespace RPG.Data
 
         [Min(0f)] public float power = 1f;
         [Min(0f)] public float atbCost = 0f;
+        [Min(0)] public int mpCost = 0;
     }
 }

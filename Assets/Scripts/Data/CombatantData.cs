@@ -12,6 +12,7 @@ namespace RPG.Data
         public Stats stats = new Stats
         {
             maxHP = 100,
+            maxMP = 30,
             attack = 10,
             defense = 5,
             magic = 10,

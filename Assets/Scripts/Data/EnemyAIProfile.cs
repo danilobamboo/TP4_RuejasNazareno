@@ -12,7 +12,9 @@ namespace RPG.Data
         EnemyHPBelow,
         AlliesAliveAtMost,
         EnemiesAliveAtLeast,
-        EveryNTurns
+        EveryNTurns,
+        SelfMPBelow,
+        AllyMPBelow
     }
 
     public enum AITargetStrategy
@@ -22,7 +24,8 @@ namespace RPG.Data
         LowestHPPercent,
         HighestHP,
         Strongest,
-        Fastest
+        Fastest,
+        LowestMPPercent
     }
 
     [Serializable]
@@ -31,6 +34,7 @@ namespace RPG.Data
         public AbilityData ability;
         public AICondition condition = AICondition.Always;
         [Range(0f, 1f)] public float hpThreshold = 0.5f;
+        [Range(0f, 1f)] public float mpThreshold = 0.3f;
         [Min(1)] public int count = 1;
         [Range(0f, 100f)] public float chance = 100f;
         public AITargetStrategy targetStrategy = AITargetStrategy.Random;

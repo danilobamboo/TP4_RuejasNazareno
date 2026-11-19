@@ -3,7 +3,8 @@ namespace RPG.Data
     public enum AbilityEffect
     {
         Damage,
-        Heal
+        Heal,
+        RestoreMP
     }
 
     public enum DamageType
