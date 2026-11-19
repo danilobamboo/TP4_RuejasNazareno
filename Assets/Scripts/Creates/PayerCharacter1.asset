@@ -20,6 +20,6 @@ MonoBehaviour:
     defense: 5
     magic: 10
     resistance: 5
-    speed: 10
-  basicAttack: {fileID: 0}
+    speed: 15
+  basicAttack: {fileID: 11400000, guid: f211479109e295d48ab500992f011b4d, type: 2}
   abilities: []
