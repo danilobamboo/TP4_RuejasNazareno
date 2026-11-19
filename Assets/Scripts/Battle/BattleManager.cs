@@ -158,6 +158,7 @@ namespace RPG.Battle
 
             List<ActionResult> results = ActionExecutor.Execute(action, settings);
             action.User.Gauge = -action.Ability.atbCost;
+            action.User.TurnsTaken++;
 
             LogAction(action, results);
             ActionExecuted?.Invoke(action, results);

@@ -13,6 +13,7 @@ namespace RPG.Battle
         public AbilityData BasicAttack { get; }
         public int CurrentHP { get; private set; }
         public float Gauge { get; set; }
+        public int TurnsTaken { get; set; }
 
         public string Name => Data.displayName;
         public Stats Stats => Data.stats;

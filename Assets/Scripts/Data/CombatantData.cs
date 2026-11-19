@@ -21,5 +21,6 @@ namespace RPG.Data
 
         public AbilityData basicAttack;
         public List<AbilityData> abilities = new List<AbilityData>();
+        public EnemyAIProfile aiProfile;
     }
 }

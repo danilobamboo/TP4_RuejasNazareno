@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eeb7a3fb85b27b47a6ff62f549120ac, type: 3}
   m_Name: EnemyCharacter3
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Data.CombatantData
-  displayName: Warrior
+  displayName: Bard
   portrait: {fileID: 0}
   stats:
     maxHP: 100
