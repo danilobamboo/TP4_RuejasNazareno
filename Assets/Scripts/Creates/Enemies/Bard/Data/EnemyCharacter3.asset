@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0eeb7a3fb85b27b47a6ff62f549120ac, type: 3}
-  m_Name: EnemyCharacter2
+  m_Name: EnemyCharacter3
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Data.CombatantData
-  displayName: Barbarian
+  displayName: Bard
   portrait: {fileID: 0}
   stats:
     maxHP: 100
-    attack: 10
-    defense: 5
-    magic: 10
-    resistance: 5
-    speed: 10
-  basicAttack: {fileID: 0}
-  abilities: []
+    attack: 5
+    defense: 8
+    magic: 20
+    resistance: 7
+    speed: 15
+  basicAttack: {fileID: 11400000, guid: 30ef8c323316fe44f8962a6ce0121e39, type: 2}
+  abilities:
+  - {fileID: 11400000, guid: 8277fac95e4e7044e9d10c23e5fb010d, type: 2}
+  aiProfile: {fileID: 0}

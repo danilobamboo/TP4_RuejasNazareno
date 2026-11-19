@@ -15,11 +15,13 @@ MonoBehaviour:
   displayName: Warrior
   portrait: {fileID: 0}
   stats:
-    maxHP: 100
-    attack: 10
-    defense: 5
-    magic: 10
-    resistance: 5
-    speed: 10
-  basicAttack: {fileID: 0}
-  abilities: []
+    maxHP: 125
+    attack: 12
+    defense: 10
+    magic: 8
+    resistance: 10
+    speed: 12
+  basicAttack: {fileID: 11400000, guid: 06e7842d0c62c1f4c8650e84893eeadf, type: 2}
+  abilities:
+  - {fileID: 0}
+  aiProfile: {fileID: 11400000, guid: 9aa467fd97b56c949b7c13f0da70117a, type: 2}
