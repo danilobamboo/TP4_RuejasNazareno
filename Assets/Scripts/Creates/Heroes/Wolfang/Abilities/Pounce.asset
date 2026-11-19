@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae9967a69b650b04d97a2cd57d2bc6fc, type: 3}
-  m_Name: SkellyAttack
+  m_Name: Pounce
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Data.AbilityData
-  displayName: Sword Bash
+  displayName: Pounce
   description: 'lorep ipsum
 
 '
@@ -20,4 +20,4 @@ MonoBehaviour:
   damageType: 0
   targetType: 0
   power: 1
-  atbCost: 0
+  atbCost: 5

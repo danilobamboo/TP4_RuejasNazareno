@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0eeb7a3fb85b27b47a6ff62f549120ac, type: 3}
-  m_Name: PayerCharacter3
+  m_Name: PayerCharacter1
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Data.CombatantData
-  displayName: Wolfang
+  displayName: Skelly
   portrait: {fileID: 0}
   stats:
-    maxHP: 100
+    maxHP: 150
     attack: 10
-    defense: 5
-    magic: 10
+    defense: 8
+    magic: 8
     resistance: 5
-    speed: 8
-  basicAttack: {fileID: 11400000, guid: 4dbeeecf2d902d64bb50e01d9bdbc8b3, type: 2}
-  abilities: []
+    speed: 15
+  basicAttack: {fileID: 11400000, guid: f211479109e295d48ab500992f011b4d, type: 2}
+  abilities:
+  - {fileID: 11400000, guid: 62bc41fcda23f804aa3433f3026a766c, type: 2}
+  aiProfile: {fileID: 0}

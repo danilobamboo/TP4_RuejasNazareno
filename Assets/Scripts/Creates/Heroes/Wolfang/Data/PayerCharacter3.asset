@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0eeb7a3fb85b27b47a6ff62f549120ac, type: 3}
-  m_Name: PayerCharacter2
+  m_Name: PayerCharacter3
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Data.CombatantData
-  displayName: Unwizard
+  displayName: Wolfang
   portrait: {fileID: 0}
   stats:
-    maxHP: 100
-    attack: 10
-    defense: 5
-    magic: 10
-    resistance: 5
-    speed: 12
-  basicAttack: {fileID: 0}
+    maxHP: 200
+    attack: 20
+    defense: 10
+    magic: 5
+    resistance: 10
+    speed: 8
+  basicAttack: {fileID: 11400000, guid: 4dbeeecf2d902d64bb50e01d9bdbc8b3, type: 2}
   abilities:
-  - {fileID: 11400000, guid: f28f10155ec2eb146b0cf6c2c4f6c517, type: 2}
+  - {fileID: 11400000, guid: 8bf95a1ab722e234f9d58a7f4b06d80e, type: 2}
+  aiProfile: {fileID: 0}
