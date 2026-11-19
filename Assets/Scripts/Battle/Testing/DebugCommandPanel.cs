@@ -22,7 +22,10 @@ namespace RPG.Battle.Testing
         {
             if (battle == null) battle = GetComponent<BattleManager>();
             if (battle == null) battle = FindFirstObjectByType<BattleManager>();
+            Debug.Log($"[DebugCommandPanel] Awake en '{gameObject.name}'. BattleManager encontrado: {battle != null}. Activo: {isActiveAndEnabled}");
         }
+
+        bool loggedGui;
 
         void Update()
         {
@@ -46,6 +49,12 @@ namespace RPG.Battle.Testing
 
         void OnGUI()
         {
+            if (!loggedGui)
+            {
+                loggedGui = true;
+                Debug.Log($"[DebugCommandPanel] OnGUI se está ejecutando. Pantalla: {Screen.width}x{Screen.height}. BattleManager: {battle != null}");
+            }
+
             if (battle == null) return;
 
             GUILayout.BeginArea(new Rect(10, 10, 360, Screen.height - 20), GUI.skin.box);
