@@ -20,3 +20,9 @@ MonoBehaviour:
   power: 1
   atbCost: 45
   mpCost: 30
+  animationTrigger: Attack
+  impactDelay: 0
+  useSound: {fileID: 8300000, guid: f319e8657503adb4798fbca616ebf7eb, type: 3}
+  statusEffect: {fileID: 0}
+  statusChance: 100
+  atbReduction: 0

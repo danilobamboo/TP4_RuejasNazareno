@@ -13,9 +13,10 @@ namespace RPG.EditorTools
 {
     public static class BattleUIBuilder
     {
-        const string PrefabFolder = "Assets/UI/Prefabs";
+        const string PrefabFolder = "Assets/Assets/UI/Prefabs";
         const string ButtonPrefabPath = PrefabFolder + "/ActionButton.prefab";
         const string StatusPrefabPath = PrefabFolder + "/CombatantStatusRow.prefab";
+        const string UIFontName = "runescape_uf SDF";
 
         static readonly Color PanelColor = new Color(0.06f, 0.07f, 0.1f, 0.85f);
         static readonly Color BarBackgroundColor = new Color(0f, 0f, 0f, 0.6f);
@@ -395,6 +396,14 @@ namespace RPG.EditorTools
         {
             RectTransform rect = CreateRect(name, parent);
             TextMeshProUGUI label = rect.gameObject.AddComponent<TextMeshProUGUI>();
+
+            TMP_FontAsset font = FindUIFont();
+            if (font != null)
+            {
+                label.font = font;
+                label.fontSharedMaterial = font.material;
+            }
+
             label.text = text;
             label.fontSize = size;
             label.alignment = alignment;
@@ -403,6 +412,16 @@ namespace RPG.EditorTools
             label.textWrappingMode = TextWrappingModes.NoWrap;
             label.overflowMode = TextOverflowModes.Ellipsis;
             return label;
+        }
+
+        static TMP_FontAsset FindUIFont()
+        {
+            foreach (string guid in AssetDatabase.FindAssets(UIFontName + " t:TMP_FontAsset"))
+            {
+                TMP_FontAsset font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(AssetDatabase.GUIDToAssetPath(guid));
+                if (font != null && font.name == UIFontName) return font;
+            }
+            return null;
         }
 
         static RectTransform CreateRect(string name, Transform parent)

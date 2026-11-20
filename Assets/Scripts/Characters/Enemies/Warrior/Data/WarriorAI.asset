@@ -18,20 +18,20 @@ MonoBehaviour:
     hpThreshold: 0
     mpThreshold: 0
     count: 0
-    chance: 0
+    chance: 100
     targetStrategy: 0
   - ability: {fileID: 11400000, guid: d0cb45e6298ad864db25a2da42b78fa7, type: 2}
     condition: 1
-    hpThreshold: 0
+    hpThreshold: 1
     mpThreshold: 0
     count: 0
-    chance: 0
-    targetStrategy: 0
+    chance: 50
+    targetStrategy: 2
   - ability: {fileID: 11400000, guid: 74a0f105eb7b8a245840b5408919f1b1, type: 2}
     condition: 5
     hpThreshold: 0
     mpThreshold: 0
     count: 0
-    chance: 0
-    targetStrategy: 0
+    chance: 25
+    targetStrategy: 4
   fallbackTargetStrategy: 0

@@ -15,5 +15,13 @@ namespace RPG.Data
         [Min(0f)] public float power = 1f;
         [Min(0f)] public float atbCost = 0f;
         [Min(0)] public int mpCost = 0;
+
+        public string animationTrigger = "Attack";
+        [Min(0f)] public float impactDelay = 0f;
+        public AudioClip useSound;
+
+        public StatusEffectData statusEffect;
+        [Range(0f, 100f)] public float statusChance = 100f;
+        [Min(0f)] public float atbReduction = 0f;
     }
 }

@@ -47,7 +47,7 @@ namespace RPG.UI
             string attackDetail = attack.mpCost > 0 ? $"MP {attack.mpCost}" : null;
             Add("Atacar", attackDetail, user.CanAfford(attack), () => SelectAbility(attack, ShowMainMenu));
             Add("Habilidades", null, user.Abilities.Any(), ShowAbilityMenu);
-            Add("Defender", "Próximamente", false, null);
+            Add("Items", null, user.HasUsableItems, ShowItemMenu);
 
             SelectFirst();
         }
@@ -68,23 +68,69 @@ namespace RPG.UI
             SelectFirst();
         }
 
-        void SelectAbility(AbilityData ability, Action back)
-        {
-            if (TargetSelector.IsSingleTarget(ability.targetType)) ShowTargetMenu(ability, back);
-            else Submit(ability, null);
-        }
-
-        void ShowTargetMenu(AbilityData ability, Action back)
+        void ShowItemMenu()
         {
             Clear();
-            titleLabel.text = $"{ability.displayName}: elegí un objetivo";
+            titleLabel.text = $"{user.Name} · Items";
 
-            foreach (Combatant target in TargetSelector.GetCandidates(user, ability, battle.Combatants))
+            foreach (InventorySlot slot in user.Inventory)
             {
-                string detail = ability.effect == AbilityEffect.RestoreMP
-                    ? $"MP {target.CurrentMP}/{target.MaxMP}"
-                    : $"HP {target.CurrentHP}/{target.MaxHP}";
-                ActionButtonView button = Add(target.Name, detail, true, () => Submit(ability, target));
+                if (slot.Quantity <= 0) continue;
+
+                ItemData item = slot.Item;
+                bool usable = TargetSelector.GetCandidates(user, item.targetType, battle.Combatants).Count > 0;
+                Add(item.displayName, $"x{slot.Quantity}", usable, () => SelectItem(item));
+            }
+
+            Add("Volver", null, true, ShowMainMenu);
+            SelectFirst();
+        }
+
+        void SelectAbility(AbilityData ability, Action back)
+        {
+            if (!TargetSelector.IsSingleTarget(ability.targetType))
+            {
+                SubmitAbility(ability, null);
+                return;
+            }
+
+            Func<Combatant, string> detail = ability.effect == AbilityEffect.RestoreMP
+                ? (Func<Combatant, string>)(t => $"MP {t.CurrentMP}/{t.MaxMP}")
+                : t => $"HP {t.CurrentHP}/{t.MaxHP}";
+
+            ShowTargetMenu(ability.displayName, ability.targetType, detail, t => SubmitAbility(ability, t), back);
+        }
+
+        void SelectItem(ItemData item)
+        {
+            if (!TargetSelector.IsSingleTarget(item.targetType))
+            {
+                SubmitItem(item, null);
+                return;
+            }
+
+            ShowTargetMenu(item.displayName, item.targetType, DescribeForItem(item), t => SubmitItem(item, t), ShowItemMenu);
+        }
+
+        static Func<Combatant, string> DescribeForItem(ItemData item)
+        {
+            return target =>
+            {
+                List<string> parts = new List<string>();
+                if (item.hpRestore > 0 || (item.mpRestore <= 0 && item.atbRestore <= 0f)) parts.Add($"HP {target.CurrentHP}/{target.MaxHP}");
+                if (item.mpRestore > 0) parts.Add($"MP {target.CurrentMP}/{target.MaxMP}");
+                return string.Join(" · ", parts);
+            };
+        }
+
+        void ShowTargetMenu(string actionName, TargetType targetType, Func<Combatant, string> describe, Action<Combatant> submit, Action back)
+        {
+            Clear();
+            titleLabel.text = $"{actionName}: elegí un objetivo";
+
+            foreach (Combatant target in TargetSelector.GetCandidates(user, targetType, battle.Combatants))
+            {
+                ActionButtonView button = Add(target.Name, describe(target), true, () => submit(target));
                 button.Highlighted += () => TargetHighlighted?.Invoke(target);
             }
 
@@ -98,9 +144,14 @@ namespace RPG.UI
             SelectFirst();
         }
 
-        void Submit(AbilityData ability, Combatant target)
+        void SubmitAbility(AbilityData ability, Combatant target)
         {
             if (battle.SubmitCommand(ability, target)) Hide();
+        }
+
+        void SubmitItem(ItemData item, Combatant target)
+        {
+            if (battle.SubmitItem(item, target)) Hide();
         }
 
         ActionButtonView Add(string text, string detail, bool interactable, Action onClick)

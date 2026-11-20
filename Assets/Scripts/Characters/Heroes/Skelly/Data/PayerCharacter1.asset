@@ -17,13 +17,21 @@ MonoBehaviour:
   stats:
     maxHP: 150
     maxMP: 50
-    attack: 10
+    attack: 5
     defense: 8
-    magic: 8
+    magic: 5
     resistance: 5
     speed: 15
   basicAttack: {fileID: 11400000, guid: f211479109e295d48ab500992f011b4d, type: 2}
   abilities:
   - {fileID: 11400000, guid: 62bc41fcda23f804aa3433f3026a766c, type: 2}
+  startingItems:
+  - item: {fileID: 11400000, guid: 81594fe5140db094283dc37afcbc499a, type: 2}
+    quantity: 2
+  - item: {fileID: 11400000, guid: aabb1671383692c40904b93e01d9a11b, type: 2}
+    quantity: 2
   aiProfile: {fileID: 0}
   turnSound: {fileID: 8300000, guid: 11d305a9cc7e64046a178686e36ce80a, type: 3}
+  actionSound: {fileID: 0}
+  hurtSound: {fileID: 8300000, guid: eb6fd26988ef5d0468f9033b82ed3530, type: 3}
+  deathSound: {fileID: 8300000, guid: 53866b87ebc198349a5117df89655f6d, type: 3}

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0474707b52909c45962c7dfe8ba632b, type: 3}
+  m_Name: Unhealing Potion
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Data.ItemData
+  displayName: Unhealing Potion
+  description: 'Restores 25 HP
+
+    Costs 25 ATB'
+  icon: {fileID: 0}
+  targetType: 2
+  hpRestore: 25
+  mpRestore: 0
+  atbRestore: 0
+  atbCost: 25
+  animationTrigger: Item
+  impactDelay: 0
+  useSound: {fileID: 8300000, guid: 8aa235aa8caacb348b36c0ea778e14d3, type: 3}

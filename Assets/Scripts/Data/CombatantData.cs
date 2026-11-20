@@ -22,7 +22,11 @@ namespace RPG.Data
 
         public AbilityData basicAttack;
         public List<AbilityData> abilities = new List<AbilityData>();
+        public List<ItemEntry> startingItems = new List<ItemEntry>();
         public EnemyAIProfile aiProfile;
         public AudioClip turnSound;
+        public AudioClip actionSound;
+        public AudioClip hurtSound;
+        public AudioClip deathSound;
     }
 }

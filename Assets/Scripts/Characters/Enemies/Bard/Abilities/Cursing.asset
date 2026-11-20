@@ -17,5 +17,12 @@ MonoBehaviour:
   effect: 0
   damageType: 1
   targetType: 0
-  power: 1
+  power: 2
   atbCost: 10
+  mpCost: 0
+  animationTrigger: Attack
+  impactDelay: 0
+  useSound: {fileID: 8300000, guid: ce5d5eebd3da80f49ab77fcada1f4427, type: 3}
+  statusEffect: {fileID: 0}
+  statusChance: 100
+  atbReduction: 0

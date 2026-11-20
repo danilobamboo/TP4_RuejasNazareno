@@ -4,7 +4,8 @@ namespace RPG.Data
     {
         Damage,
         Heal,
-        RestoreMP
+        RestoreMP,
+        None
     }
 
     public enum DamageType

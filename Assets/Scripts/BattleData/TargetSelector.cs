@@ -13,7 +13,12 @@ namespace RPG.Battle
 
         public static List<Combatant> GetCandidates(Combatant user, AbilityData ability, IEnumerable<Combatant> combatants)
         {
-            switch (ability.targetType)
+            return GetCandidates(user, ability.targetType, combatants);
+        }
+
+        public static List<Combatant> GetCandidates(Combatant user, TargetType targetType, IEnumerable<Combatant> combatants)
+        {
+            switch (targetType)
             {
                 case TargetType.Self:
                     return user.IsAlive ? new List<Combatant> { user } : new List<Combatant>();
@@ -29,9 +34,14 @@ namespace RPG.Battle
 
         public static List<Combatant> ResolveTargets(Combatant user, AbilityData ability, IEnumerable<Combatant> combatants, Combatant chosenTarget)
         {
-            List<Combatant> candidates = GetCandidates(user, ability, combatants);
+            return ResolveTargets(user, ability.targetType, combatants, chosenTarget);
+        }
 
-            if (!IsSingleTarget(ability.targetType)) return candidates;
+        public static List<Combatant> ResolveTargets(Combatant user, TargetType targetType, IEnumerable<Combatant> combatants, Combatant chosenTarget)
+        {
+            List<Combatant> candidates = GetCandidates(user, targetType, combatants);
+
+            if (!IsSingleTarget(targetType)) return candidates;
 
             if (chosenTarget != null && candidates.Contains(chosenTarget))
                 return new List<Combatant> { chosenTarget };

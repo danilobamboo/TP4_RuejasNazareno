@@ -22,6 +22,7 @@ namespace RPG.Battle
         public List<CombatantData> party = new List<CombatantData>();
         public List<CombatantData> enemies = new List<CombatantData>();
         [Min(0f)] public float actionPause = 0.6f;
+        [Min(0f)] public float statusTickPause = 0.5f;
         public bool startOnStart = true;
         public bool logToConsole = true;
 
@@ -38,7 +39,9 @@ namespace RPG.Battle
         public event Action BattleStarted;
         public event Action<Combatant> TurnStarted;
         public event Action<Combatant> CommandRequested;
+        public event Action<BattleAction> ActionStarted;
         public event Action<BattleAction, IReadOnlyList<ActionResult>> ActionExecuted;
+        public event Action<Combatant, StatusTick> StatusTicked;
         public event Action<Team> BattleEnded;
 
         void Start()
@@ -156,13 +159,36 @@ namespace RPG.Battle
             return true;
         }
 
+        public bool SubmitItem(ItemData item, Combatant target = null)
+        {
+            if (State != BattleState.WaitingForCommand || ActiveCommander == null || item == null) return false;
+            if (ActiveCommander.GetItemCount(item) <= 0) return false;
+
+            List<Combatant> targets = TargetSelector.ResolveTargets(ActiveCommander, item.targetType, combatants, target);
+            if (targets.Count == 0) return false;
+
+            Combatant user = ActiveCommander;
+            readyQueue.Remove(user);
+            ActiveCommander = null;
+
+            StartCoroutine(ExecuteAction(new BattleAction(user, item, targets)));
+            return true;
+        }
+
         IEnumerator ExecuteAction(BattleAction action)
         {
             State = BattleState.Executing;
 
-            action.User.SpendMP(action.Ability.mpCost);
+            if (action.IsItem) action.User.ConsumeItem(action.Item);
+            else action.User.SpendMP(action.MpCost);
+
+            action.User.Gauge = -action.AtbCost;
+            ActionStarted?.Invoke(action);
+
+            if (action.ImpactDelay > 0f) yield return new WaitForSeconds(action.ImpactDelay);
+
             List<ActionResult> results = ActionExecutor.Execute(action, settings);
-            action.User.Gauge = -action.Ability.atbCost;
+            readyQueue.RemoveAll(c => c.Gauge < MaxGauge);
             action.User.TurnsTaken++;
 
             LogAction(action, results);
@@ -172,7 +198,30 @@ namespace RPG.Battle
 
             if (CheckBattleEnd()) yield break;
 
+            if (action.User.IsAlive) yield return ProcessStatuses(action.User);
+
+            if (CheckBattleEnd()) yield break;
+
             State = BattleState.Running;
+        }
+
+        IEnumerator ProcessStatuses(Combatant combatant)
+        {
+            List<StatusTick> ticks = combatant.TickStatuses();
+            if (ticks.Count == 0) yield break;
+
+            foreach (StatusTick tick in ticks)
+            {
+                if (tick.Damage > 0)
+                    Log($"    {combatant.Name} sufre {tick.Damage} por {tick.Status.Effect.displayName} ({combatant.CurrentHP}/{combatant.MaxHP})");
+                if (tick.Expired && combatant.IsAlive)
+                    Log($"    {tick.Status.Effect.displayName} de {combatant.Name} terminó.");
+
+                StatusTicked?.Invoke(combatant, tick);
+            }
+
+            if (statusTickPause > 0f && ticks.Any(t => t.Damage > 0))
+                yield return new WaitForSeconds(statusTickPause);
         }
 
         void OnCombatantDied(Combatant combatant)
@@ -208,7 +257,10 @@ namespace RPG.Battle
             if (!logToConsole) return;
 
             string color = action.User.Team == Team.Party ? "cyan" : "orange";
-            Debug.Log($"<color={color}>{action.User.Name}</color> usa <b>{action.Ability.displayName}</b> (ATB {action.Ability.atbCost}, MP {action.Ability.mpCost}) · MP {action.User.CurrentMP}/{action.User.MaxMP}");
+            string cost = action.IsItem
+                ? $"quedan {action.User.GetItemCount(action.Item)}"
+                : $"ATB {action.AtbCost}, MP {action.MpCost}";
+            Debug.Log($"<color={color}>{action.User.Name}</color> usa <b>{action.DisplayName}</b> ({cost}) · MP {action.User.CurrentMP}/{action.User.MaxMP}");
 
             foreach (ActionResult result in results)
             {
@@ -219,6 +271,15 @@ namespace RPG.Battle
                         break;
                     case ActionResultType.RestoreMP:
                         Debug.Log($"    {result.Target.Name} recupera {result.Amount} MP ({result.Target.CurrentMP}/{result.Target.MaxMP})");
+                        break;
+                    case ActionResultType.RestoreATB:
+                        Debug.Log($"    {result.Target.Name} recupera {result.Amount} de ATB");
+                        break;
+                    case ActionResultType.ReduceATB:
+                        Debug.Log($"    {result.Target.Name} pierde {result.Amount} de ATB");
+                        break;
+                    case ActionResultType.StatusApplied:
+                        Debug.Log($"    {result.Target.Name} queda con {result.Status.displayName} ({result.Status.durationTurns} turnos)");
                         break;
                     default:
                         Debug.Log($"    {result.Target.Name} recibe {result.Amount} de daño ({result.Target.CurrentHP}/{result.Target.MaxHP})");

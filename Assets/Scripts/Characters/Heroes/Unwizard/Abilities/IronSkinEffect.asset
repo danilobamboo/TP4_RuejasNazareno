@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b21639f1d0d60e341b71e92c7351f41e, type: 3}
+  m_Name: IronSkinEffect
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Data.StatusEffectData
+  displayName: Iron Skin
+  shortName: ISK
+  color: {r: 0.4380169, g: 1, b: 0, a: 1}
+  icon: {fileID: 0}
+  type: 1
+  durationTurns: 5
+  damagePerTurn: 0
+  damagePercentOfMaxHP: 0
+  stat: 1
+  statMultiplier: 1.5

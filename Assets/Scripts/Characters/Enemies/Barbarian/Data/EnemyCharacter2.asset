@@ -25,4 +25,10 @@ MonoBehaviour:
   basicAttack: {fileID: 11400000, guid: c7e231e0ddb07824785fce4768b8f6c9, type: 2}
   abilities:
   - {fileID: 11400000, guid: be3cb15af29412142b05b5e05e2bc2e7, type: 2}
+  - {fileID: 11400000, guid: b6e51c88ea8c3774f8996ab579b4697e, type: 2}
+  startingItems: []
   aiProfile: {fileID: 11400000, guid: 86d3324c64ac0104d8de6e7bb5c02e7d, type: 2}
+  turnSound: {fileID: 0}
+  actionSound: {fileID: 0}
+  hurtSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 2899c97929fb92d498246ea13241105f, type: 3}

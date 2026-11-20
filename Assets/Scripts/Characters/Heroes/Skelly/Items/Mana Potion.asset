@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0474707b52909c45962c7dfe8ba632b, type: 3}
+  m_Name: Mana Potion
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Data.ItemData
+  displayName: Mana Potion
+  description: Restores 100 MP and 25 ATB
+  icon: {fileID: 0}
+  targetType: 2
+  hpRestore: 0
+  mpRestore: 100
+  atbRestore: 25
+  atbCost: 0
+  animationTrigger: Item
+  impactDelay: 0
+  useSound: {fileID: 8300000, guid: addb397d8ce6d3146b5236e81c677e5f, type: 3}

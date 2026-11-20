@@ -26,4 +26,9 @@ MonoBehaviour:
   abilities:
   - {fileID: 11400000, guid: d0cb45e6298ad864db25a2da42b78fa7, type: 2}
   - {fileID: 11400000, guid: 74a0f105eb7b8a245840b5408919f1b1, type: 2}
+  startingItems: []
   aiProfile: {fileID: 11400000, guid: 1b527992c01ccae41b1e19f4645ff467, type: 2}
+  turnSound: {fileID: 0}
+  actionSound: {fileID: 0}
+  hurtSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 49b8c9b6560db3d46a1e36fbc2229538, type: 3}
