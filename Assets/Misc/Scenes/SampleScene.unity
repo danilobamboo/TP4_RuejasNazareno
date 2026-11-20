@@ -2197,7 +2197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1126242358742066004, guid: 8ee86ad16b5056b4d94999132c89ce7b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.06000006
+      value: 1.86
       objectReference: {fileID: 0}
     - target: {fileID: 1126242358742066004, guid: 8ee86ad16b5056b4d94999132c89ce7b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2231,10 +2231,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6431452124632873262, guid: 8ee86ad16b5056b4d94999132c89ce7b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d512465db775d8945889e26291a6073c, type: 2}
+    - target: {fileID: 6431452124632873262, guid: 8ee86ad16b5056b4d94999132c89ce7b, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 354350443408783854, guid: 8ee86ad16b5056b4d94999132c89ce7b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1903865994}
   m_SourcePrefab: {fileID: 100100000, guid: 8ee86ad16b5056b4d94999132c89ce7b, type: 3}
 --- !u!1 &608610661
 GameObject:
@@ -2711,7 +2722,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 1
+  m_overflowMode: 3
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
@@ -3927,7 +3938,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1116439223808960003, guid: 978751dccab67ed428e7267807229001, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1768972340}
   m_SourcePrefab: {fileID: 100100000, guid: 978751dccab67ed428e7267807229001, type: 3}
 --- !u!1 &1190116673
 GameObject:
@@ -5985,6 +5999,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1768972336 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1116439223808960003, guid: 978751dccab67ed428e7267807229001, type: 3}
+  m_PrefabInstance: {fileID: 1163101228}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1768972340
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768972336}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: fa3899f6cb831704286fe9ceeb46cb17, type: 3}
+  m_Controller: {fileID: 9100000, guid: 71d0ad6ab8c9c254697bba49ec4a53f9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1842029305
 GameObject:
   m_ObjectHideFlags: 0
@@ -6078,6 +6119,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1903865991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 354350443408783854, guid: 8ee86ad16b5056b4d94999132c89ce7b, type: 3}
+  m_PrefabInstance: {fileID: 598235059}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1903865994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903865991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc24c99ffcc27e34d87ce77407c138c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Presentation.SteppedAnimator
+  framesPerSecond: 8
+  randomizePhase: 1
 --- !u!1 &1905432080
 GameObject:
   m_ObjectHideFlags: 0
@@ -6844,7 +6904,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 1
+  m_overflowMode: 3
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0

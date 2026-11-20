@@ -19,7 +19,7 @@ MonoBehaviour:
     maxMP: 100
     attack: 10
     defense: 5
-    magic: 20
+    magic: 5
     resistance: 5
     speed: 12
   basicAttack: {fileID: 11400000, guid: 7ecfc798e307f2640a9b9f1bab6faf81, type: 2}
