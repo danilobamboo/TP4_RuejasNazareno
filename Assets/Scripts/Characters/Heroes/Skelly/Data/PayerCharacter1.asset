@@ -26,3 +26,4 @@ MonoBehaviour:
   abilities:
   - {fileID: 11400000, guid: 62bc41fcda23f804aa3433f3026a766c, type: 2}
   aiProfile: {fileID: 0}
+  turnSound: {fileID: 8300000, guid: 11d305a9cc7e64046a178686e36ce80a, type: 3}
