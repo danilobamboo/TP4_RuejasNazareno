@@ -2882,15 +2882,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\xA1Victoria!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d26ad73c60004e840ac2cb8bf31afe1b, type: 2}
+  m_sharedMaterial: {fileID: -2472619373320811322, guid: d26ad73c60004e840ac2cb8bf31afe1b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278238975
+  m_fontColor: {r: 1, g: 0.74674106, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4331,13 +4331,33 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8583671438000003728, guid: 5fb847aa5f2b5684c8c35ac637fbf5c6, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d26ad73c60004e840ac2cb8bf31afe1b, type: 2}
+    - target: {fileID: 8583671438000003728, guid: 5fb847aa5f2b5684c8c35ac637fbf5c6, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2472619373320811322, guid: d26ad73c60004e840ac2cb8bf31afe1b, type: 2}
+    - target: {fileID: 8583671438000003728, guid: 5fb847aa5f2b5684c8c35ac637fbf5c6, type: 3}
       propertyPath: m_TextStyleHashCode
       value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 8583671438000003728, guid: 5fb847aa5f2b5684c8c35ac637fbf5c6, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8869234705427507863, guid: 5fb847aa5f2b5684c8c35ac637fbf5c6, type: 3}
       propertyPath: m_text
       value: Reiniciar batalla
       objectReference: {fileID: 0}
+    - target: {fileID: 8869234705427507863, guid: 5fb847aa5f2b5684c8c35ac637fbf5c6, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: d26ad73c60004e840ac2cb8bf31afe1b, type: 2}
+    - target: {fileID: 8869234705427507863, guid: 5fb847aa5f2b5684c8c35ac637fbf5c6, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -2472619373320811322, guid: d26ad73c60004e840ac2cb8bf31afe1b, type: 2}
     - target: {fileID: 8869234705427507863, guid: 5fb847aa5f2b5684c8c35ac637fbf5c6, type: 3}
       propertyPath: m_TextStyleHashCode
       value: -1183493901
@@ -4345,6 +4365,10 @@ PrefabInstance:
     - target: {fileID: 8869234705427507863, guid: 5fb847aa5f2b5684c8c35ac637fbf5c6, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8869234705427507863, guid: 5fb847aa5f2b5684c8c35ac637fbf5c6, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5018,8 +5042,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d26ad73c60004e840ac2cb8bf31afe1b, type: 2}
+  m_sharedMaterial: {fileID: -2472619373320811322, guid: d26ad73c60004e840ac2cb8bf31afe1b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7105,8 +7129,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Turno de ...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d26ad73c60004e840ac2cb8bf31afe1b, type: 2}
+  m_sharedMaterial: {fileID: -2472619373320811322, guid: d26ad73c60004e840ac2cb8bf31afe1b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
