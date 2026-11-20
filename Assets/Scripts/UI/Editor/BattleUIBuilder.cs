@@ -107,6 +107,7 @@ namespace RPG.EditorTools
             hud.restartButton = restartButton.button;
 
             Undo.RegisterCreatedObjectUndo(canvas, "Crear UI de batalla");
+            AddTurnFeedback(hud);
             EditorSceneManager.MarkSceneDirty(canvas.scene);
             Selection.activeGameObject = canvas;
 
@@ -114,6 +115,88 @@ namespace RPG.EditorTools
                 Debug.LogWarning("[BattleUIBuilder] UI creada, pero no hay un BattleManager en la escena. Asignalo a mano en BattleHUD.");
             else
                 Debug.Log("[BattleUIBuilder] UI de batalla creada. Prefabs en " + PrefabFolder);
+        }
+
+        [MenuItem("Tools/RPG/Agregar retrato y sonido de turno")]
+        public static void AddTurnFeedbackMenu()
+        {
+            BattleHUD hud = Object.FindFirstObjectByType<BattleHUD>();
+            if (hud == null)
+            {
+                EditorUtility.DisplayDialog("Falta la UI de batalla", "Primero creá la UI con Tools > RPG > Crear UI de batalla.", "Entendido");
+                return;
+            }
+
+            TurnPortraitView existing = Object.FindFirstObjectByType<TurnPortraitView>();
+            if (existing != null)
+            {
+                bool replace = EditorUtility.DisplayDialog(
+                    "Ya existe un retrato de turno",
+                    "La escena ya tiene el retrato de turno. ¿Querés reemplazarlo?",
+                    "Reemplazar",
+                    "Cancelar");
+
+                if (!replace) return;
+                Undo.DestroyObjectImmediate(existing.gameObject);
+            }
+
+            AddTurnFeedback(hud);
+            EditorSceneManager.MarkSceneDirty(hud.gameObject.scene);
+            Debug.Log("[BattleUIBuilder] Retrato y sonido de turno agregados.");
+        }
+
+        static void AddTurnFeedback(BattleHUD hud)
+        {
+            RectTransform root = CreateRect("TurnPortrait", hud.transform);
+            Stretch(root, 0f);
+            if (hud.partyContainer != null) root.SetSiblingIndex(hud.partyContainer.GetSiblingIndex());
+
+            RectTransform hidden = CreateRect("PortraitHidden", root);
+            hidden.anchorMin = hidden.anchorMax = Vector2.zero;
+            hidden.anchoredPosition = new Vector2(220f, 90f);
+            hidden.sizeDelta = new Vector2(20f, 20f);
+
+            RectTransform shown = CreateRect("PortraitShown", root);
+            shown.anchorMin = shown.anchorMax = new Vector2(0.5f, 0.5f);
+            shown.anchoredPosition = new Vector2(0f, 60f);
+            shown.sizeDelta = new Vector2(20f, 20f);
+
+            RectTransform frame = CreatePanel("PortraitFrame", root, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), Vector2.zero, new Vector2(340f, 340f));
+            frame.GetComponent<Image>().raycastTarget = false;
+
+            RectTransform imageRect = CreateRect("Portrait", frame);
+            Stretch(imageRect, 10f);
+            RawImage display = imageRect.gameObject.AddComponent<RawImage>();
+            display.raycastTarget = false;
+
+            GameObject cameraObject = GameObject.Find("PortraitCamera");
+            if (cameraObject == null)
+            {
+                cameraObject = new GameObject("PortraitCamera");
+                Undo.RegisterCreatedObjectUndo(cameraObject, "Crear cámara de retrato");
+            }
+
+            Camera portraitCamera = cameraObject.GetComponent<Camera>();
+            if (portraitCamera == null) portraitCamera = cameraObject.AddComponent<Camera>();
+            portraitCamera.fieldOfView = 30f;
+            portraitCamera.nearClipPlane = 0.05f;
+            portraitCamera.enabled = false;
+
+            TurnPortraitView view = root.gameObject.AddComponent<TurnPortraitView>();
+            view.battle = hud.battle;
+            view.portraitCamera = portraitCamera;
+            view.display = display;
+            view.panel = frame;
+            view.hiddenAnchor = hidden;
+            view.shownAnchor = shown;
+
+            if (Object.FindFirstObjectByType<RPG.Presentation.TurnSoundPlayer>() == null)
+            {
+                GameObject soundObject = new GameObject("TurnSounds", typeof(AudioSource));
+                RPG.Presentation.TurnSoundPlayer player = soundObject.AddComponent<RPG.Presentation.TurnSoundPlayer>();
+                player.battle = hud.battle;
+                Undo.RegisterCreatedObjectUndo(soundObject, "Crear sonidos de turno");
+            }
         }
 
         static ActionButtonView CreateButtonPrefab()

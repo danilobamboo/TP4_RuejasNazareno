@@ -36,6 +36,7 @@ namespace RPG.Battle
         public float MaxGauge => settings != null ? settings.maxGauge : 100f;
 
         public event Action BattleStarted;
+        public event Action<Combatant> TurnStarted;
         public event Action<Combatant> CommandRequested;
         public event Action<BattleAction, IReadOnlyList<ActionResult>> ActionExecuted;
         public event Action<Team> BattleEnded;
@@ -126,6 +127,7 @@ namespace RPG.Battle
                     return;
                 }
 
+                TurnStarted?.Invoke(next);
                 StartCoroutine(ExecuteAction(action));
             }
             else
@@ -133,6 +135,7 @@ namespace RPG.Battle
                 ActiveCommander = next;
                 State = BattleState.WaitingForCommand;
                 Log($"Turno de <color=cyan>{next.Name}</color>. Esperando comando...");
+                TurnStarted?.Invoke(next);
                 CommandRequested?.Invoke(next);
             }
         }
